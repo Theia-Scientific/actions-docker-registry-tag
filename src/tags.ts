@@ -54,6 +54,7 @@ export async function addTags(image: Image, tags: string[]): Promise<Result[]> {
 
   return await Promise.all(
     tags.map(async function (tag: string): Promise<Result> {
+      tag = tag.replace(/^v/, '')
       const result = await fetch(manifestUrl(image, tag), {
         method: 'PUT',
         headers,
